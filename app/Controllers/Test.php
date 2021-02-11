@@ -3,6 +3,9 @@
 namespace App\Controllers;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Style\Color;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\Style;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Throwable;
 
@@ -118,6 +121,27 @@ class Test extends BaseAdmin
 			$sheet->setCellValue('C' . (3 + $i), $bOut);
 			$sheet->setCellValue('D' . (3 + $i), $cOut);
 		}
+
+		/**
+		 * @param Style $style
+		 * @param Color $color
+		 */
+		function setColor($style, $color)
+		{
+			$style->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setARGB($color);
+			$border = [
+				'allBorders' => [
+					'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+					'color' => ['argb' => Color::COLOR_BLACK],
+				],
+			];
+			$style->getBorders()->applyFromArray($border);
+		}
+
+		setColor($sheet->getStyle('B2:B' . ($i + 2)), Color::COLOR_YELLOW);
+		setColor($sheet->getStyle('C2:C' . ($i + 2)), Color::COLOR_YELLOW);
+		setColor($sheet->getStyle('D2:D' . ($i + 2)), Color::COLOR_YELLOW);
+		setColor($sheet->getStyle('E2:E' . ($i + 2)), Color::COLOR_DARKGREEN);
 
 		$writer = new Xlsx($spreadsheet);
 		$writer->save('generate.xlsx');
