@@ -1,30 +1,29 @@
 ## How to run
 
 1. Clone this repo at folder www\htdocs (I am using laragon)
-
 command:
-`git clone https://github.com/skuadron45/testexcel`
-
+```
+git clone https://github.com/skuadron45/testexcel
+```
 example:
-`c:\laragon\www>git clone https://github.com/skuadron45/testexcel.git`
+```
+c:\laragon\www>git clone https://github.com/skuadron45/testexcel.git
+```
 
 2. Change directory to testexcel
-
-`
+```
 c:\laragon\www>cd testexcel
-`
-`
 c:\laragon\www\testexcel>
-`
-
+```
 3. Run composer install
-   
-`c:\laragon\www\testexcel>composer install`
+```   
+c:\laragon\www\testexcel>composer install
+```
 
 4. Run php spark serve
-
-`c:\laragon\www\testexcel>php spark serve`
-
+```
+c:\laragon\www\testexcel>php spark serve
+```
 5. Open browser with this url: http://localhost:8080/
 
 ## Screenshoot
