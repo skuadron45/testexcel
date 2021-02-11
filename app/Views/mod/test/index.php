@@ -24,10 +24,8 @@ $this->extend('layouts/test');
 <div class="container-fluid">
 
     <div class="d-flex pb-2 justify-content-end">
-        <!-- <a class="btn btn-success mr-1"><i class="fas fa-save"></i>&nbsp;Simpan</a> -->
-        <button id="button-submit" class="btn btn-success mr-1" type="submit" form="main-form" ><i class="fas fa-save"></i>&nbsp;Generate</button>
-    </div>
-    <!-- SELECT2 EXAMPLE -->
+        <button id="button-generate" class="btn btn-primary" type="button"><i class="fas fa-save"></i>&nbsp;Generate</button>
+    </div>    
 
     <div class="row">
         <div class="col-12">
@@ -78,6 +76,43 @@ $this->extend('layouts/test');
         </div>
     </div>
 
+    <div class="d-flex pb-2 justify-content-end">
+        <button id="button-submit" class="btn btn-success" type="submit" form="main-form"><i class="fas fa-file-excel"></i>&nbsp;Excel</button>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-default">
+
+                <div class="card-body">
+
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr class="font-weight-bold">
+                                <td class="text-center">
+                                    Nilai A
+                                </td>
+                                <td class="text-center">
+                                    Nilai B
+                                </td>
+                                <td class="text-center">
+                                    Nilai C
+                                </td>
+                                <td class="text-center">
+                                    Nilai D
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <!-- /.card -->
 </div>
 
@@ -93,9 +128,6 @@ $this->extend('layouts/test');
 
 <script>
     $(function() {
-
-
-
 
 
     });
