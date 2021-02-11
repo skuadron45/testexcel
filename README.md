@@ -1,6 +1,7 @@
 ## How to run
 
 1. Clone this repo at folder www\htdocs (I am using laragon)
+
 command:
 ```
 git clone https://github.com/skuadron45/testexcel
