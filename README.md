@@ -19,10 +19,13 @@ c:\laragon\www\testexcel>
 5. Open browser with this url: http://localhost:8080/
 
 ## Screenshoot
-![Capture1](https://link)
-![Capture2](https://link)
-![Capture3](https://link)
-![Capture4](https://link)
+![Capture1](https://raw.githubusercontent.com/skuadron45/testexcel/main/.github/Capture1.PNG)
+
+![Capture2](https://raw.githubusercontent.com/skuadron45/testexcel/main/.github/Capture2.PNG)
+
+![Capture3](https://raw.githubusercontent.com/skuadron45/testexcel/main/.github/Capture3.PNG)
+
+![Capture4](https://raw.githubusercontent.com/skuadron45/testexcel/main/.github/Capture4.PNG)
 
 ## Server Requirements
 
