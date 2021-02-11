@@ -1,8 +1,10 @@
 <?php
+
 namespace App\Controllers;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Throwable;
 
 class Test extends BaseAdmin
 {
@@ -11,19 +13,63 @@ class Test extends BaseAdmin
 	public function index()
 	{
 
+		if ($this->request->getPost()) {
+
+			$rules = [
+				'nilaia' => [
+					'label'  => 'Nilai A',
+					'rules'  => 'required'
+				],
+				'nilaib' => [
+					'label'  => 'Nilai B',
+					'rules'  => 'required'
+				],
+				'nilaic' => [
+					'label'  => 'Nilai C',
+					'rules'  => 'required'
+				]
+
+
+			];
+
+			$success = false;
+			$code = 400;
+
+			if ($this->request->getPost()) {
+
+				if ($this->validate($rules)) {
+					try {
+						$nilaia = $this->request->getPost("nilaia");
+						$nilaib = $this->request->getPost("nilaib");
+						$nilaic = $this->request->getPost("nilaic");
+						$this->vars['a'] = intval($nilaia);
+						$this->vars['b'] = intval($nilaib);
+						$this->vars['c'] = intval($nilaic);
+						$data['html'] = $this->render('test/preview');
+
+						$message = "Data berhasil digenerate!";
+						$success = true;
+						$code = 201;
+					} catch (Throwable $th) {
+						$message = $th->getMessage();
+					}
+				} else {
+					$code = 412;
+					$message = 'Validasi parameter gagal !';
+					$data['errors'] = $this->validator->getErrors();
+				}
+			}
+			return $this->respondJson($data ?? null, $message ?? "Gagal generate data!", $success, $code);
+		}
+
 		return $this->render('test/index');
 	}
 
-	public function generate()
+	public function download()
 	{
 		$nilaia = $this->request->getPost("nilaia");
 		$nilaib = $this->request->getPost("nilaib");
 		$nilaic = $this->request->getPost("nilaic");
-
-		// $this->vars['a'] = intval($nilaia);
-		// $this->vars['b'] = intval($nilaib);
-		// $this->vars['c'] = intval($nilaic);
-		//return $this->render('test/preview');
 
 		$a = intval($nilaia);
 		$b = intval($nilaib);
@@ -40,7 +86,6 @@ class Test extends BaseAdmin
 		$total = 1 * $b * $c;
 
 		$aIndex = 0;
-		$bIndex = 0;
 		$cIndex = 0;
 		for ($i = 0; $i < $total * $a; $i++) {
 

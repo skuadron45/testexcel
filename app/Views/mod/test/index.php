@@ -25,7 +25,7 @@ $this->extend('layouts/test');
 
     <div class="d-flex pb-2 justify-content-end">
         <button id="button-generate" class="btn btn-primary" type="button"><i class="fas fa-save"></i>&nbsp;Generate</button>
-    </div>    
+    </div>
 
     <div class="row">
         <div class="col-12">
@@ -35,7 +35,7 @@ $this->extend('layouts/test');
 
                     <?php
                     $opt['id'] = "main-form";
-                    $url = route_to('admin.test.generate');
+                    $url = route_to('admin.test.download');
                     echo form_open($url, $opt);
                     ?>
 
@@ -86,7 +86,7 @@ $this->extend('layouts/test');
 
                 <div class="card-body">
 
-                    <table class="table table-bordered table-striped">
+                    <table id="preview-table" class="table table-bordered table-striped">
                         <thead>
                             <tr class="font-weight-bold">
                                 <td class="text-center">
@@ -124,11 +124,29 @@ $this->extend('layouts/test');
 <?= $this->endSection() ?>
 
 <?= $this->section('page-js') ?>
-
-
 <script>
     $(function() {
+        $("#button-generate").click(function(e) {
 
+            var formData = new FormData($("#main-form")[0]);
+            var doneCb = function(data, textStatus, jqXHR) {
+
+                var response = jqXHR.responseJSON || {};
+                HELPER.Notify.info(response.message, function() {
+                    let data = response.data || {};
+                    let tbody = data.html || '';
+                    $("#preview-table tbody").html(tbody);
+                });
+            };
+
+            let tbodyLoading = `
+            <tr><td class="text-center" colspan="4">Sedang generate data !</td></tr>
+            `;
+
+            $("#preview-table tbody").html(tbodyLoading);
+            HELPER.Html.loading(true);
+            SERVER.post("<?= route_to('admin.test.preview') ?>", formData, "json", doneCb);
+        });
 
     });
 </script>

@@ -32,7 +32,9 @@ $routes->setAutoRoute(false);
  */
 $routes->group('/', function (RouteCollection $routes) {
     $routes->get('', 'Test::index', ['as' => 'admin.test.index']);
-    $routes->post('generate', 'Test::generate', ['as' => 'admin.test.generate']);
+    $routes->post('', 'Test::index', ['as' => 'admin.test.preview']);
+
+    $routes->post('download', 'Test::download', ['as' => 'admin.test.download']);    
 });
 
 /*
